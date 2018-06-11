@@ -1,0 +1,42 @@
+﻿@model Exercises.Models.PersonalRecords
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PersonalRecords</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Set.Commentary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Set.Commentary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Load)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Load)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentRecord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentRecord)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PRId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

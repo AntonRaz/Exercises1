@@ -10,6 +10,7 @@ namespace Exercises.Models
     public class PersonalRecords
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PRId { get; set; }
 
         public int Load { get; set; }
@@ -19,6 +20,6 @@ namespace Exercises.Models
         public int SetNumber { get; set; }
 
         [ForeignKey("SessionId, SetNumber")]
-        public Set Set { get; set; }
+        public SessionSet SessionSet { get; set; }
     }
 }

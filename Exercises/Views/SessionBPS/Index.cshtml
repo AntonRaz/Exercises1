@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Exercises.ViewModels.SessionBPSViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sessions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.session.SessionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.session.Commentary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bps.SleepQuality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bps.TrustInSelf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bps.Stress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bps.Fatigue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bps.Stiffness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bps.Motivation)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <th>
+            @Html.DisplayFor(model => item.session.SessionDate)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.session.Commentary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bps.SleepQuality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bps.TrustInSelf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bps.Stress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bps.Fatigue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bps.Stiffness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bps.Motivation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.session.SessionId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.session.SessionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.session.SessionId })
+        </td>
+    </tr>
+    }
+
+</table>

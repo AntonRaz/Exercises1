@@ -10,6 +10,8 @@ namespace Exercises.Models
     public class BiopsychosocialState
     {
         [Key]
+        [ForeignKey("session")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BPSId { get; set; }
 
         [Range(0, 10)]
@@ -23,5 +25,13 @@ namespace Exercises.Models
 
         [Range(0, 10)]
         public int Fatigue { get; set; }
+
+        [Range(0, 10)]
+        public int Stiffness { get; set; }
+
+        [Range(0, 10)]
+        public int Motivation { get; set; }
+
+        public virtual Session session { get; set; }
     }
 }

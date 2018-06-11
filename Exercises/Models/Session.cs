@@ -11,18 +11,19 @@ namespace Exercises.Models
     public class Session
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SessionId { get; set;}
 
+        [Display(Name = "Session Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode =true)]
         public DateTime SessionDate { get; set; }
 
         public string Commentary { get; set; }
 
-        public int BPSId { get; set; }
+        public virtual BiopsychosocialState BiopsychosocialState { get; set; }
 
-        [ForeignKey("BPSId")]
-        public BiopsychosocialState BiopsychosocialState { get; set; }
-
-        public List<Set> Sets { get; set; }
+        public List<SessionSet> Sets { get; set; }
     }
 
     public class SessionDBContext : DbContext

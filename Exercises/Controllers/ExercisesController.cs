@@ -12,7 +12,7 @@ namespace Exercises.Controllers
 {
     public class ExercisesController : Controller
     {
-        private ExerciseDBContext db = new ExerciseDBContext();
+        private GymJournalDBContext db = new GymJournalDBContext();
 
         // GET: Exercises
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace Exercises.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Exercise exercise)
+        public ActionResult Create([Bind(Include = "ExerciseID,Name")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Exercises.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Exercise exercise)
+        public ActionResult Edit([Bind(Include = "ExerciseID,Name")] GymJournalDBContext exercise)
         {
             if (ModelState.IsValid)
             {

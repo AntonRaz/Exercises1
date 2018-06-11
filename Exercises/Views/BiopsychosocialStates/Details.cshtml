@@ -1,0 +1,42 @@
+﻿@model Exercises.Models.BiopsychosocialState
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BiopsychosocialState</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SleepQuality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SleepQuality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrustInSelf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrustInSelf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BPSId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

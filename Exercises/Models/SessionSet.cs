@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Exercises.Models
 {
-    public class Set
+    public class SessionSet
     {
         [Key, Column(Order = 0)]
+        [HiddenInput(DisplayValue = false)]
         public int SessionId { get; set; }
 
         [ForeignKey("SessionId")]

@@ -15,7 +15,7 @@ namespace Exercises.Models
         public int SessionId { get; set; }
 
         [ForeignKey("SessionId")]
-        public Session Session { get; set; }
+        public virtual Session Session { get; set; }
 
         [Key, Column(Order = 1)]
         public int SetNumber { get; set; }

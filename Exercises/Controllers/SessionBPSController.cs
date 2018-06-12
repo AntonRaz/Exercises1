@@ -111,7 +111,7 @@ namespace Exercises.Controllers
                         db.SaveChanges();
                     }
                     //return RedirectToAction("Index");
-                    return Json(new { Success = 1, SessionId = sBPS.session.SessionId, ex = "" });
+                    return Json(new { Success = 1, sBPS.session.SessionId, ex = "" });
                 }
             }
             catch (Exception ex)

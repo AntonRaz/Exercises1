@@ -1,16 +1,19 @@
 ﻿@model Exercises.ViewModels.SessionBPSViewModel
 
 @*This is for jquery*@
-<script src="../../Scripts/jquery-1.5.1.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-3.3.1.js" type="text/javascript"></script>
 @*This is for jquery UI, for Calender control*@
-<script src="../../Scripts/jquery-ui-1.8.11.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-ui-1.8.11.js" type="text/javascript"></script>
 
 @*This is for JSON*@
-<script src="../../Scripts/json2.js" type="text/javascript"></script>
+<script src="/Scripts/json2.js" type="text/javascript"></script>
 @*These are for DataTables*@
-<script src="../../Scripts/DataTables-1.8.1/media/js/jquery.dataTables.js" type="text/javascript"></script>
-<script src="../../Scripts/DataTables-1.8.1/extras/TableTools/media/js/TableTools.js" type="text/javascript"></script>
-<script src="../../Scripts/DataTables-1.8.1/extras/TableTools/media/js/ZeroClipboard.js" type="text/javascript"></script>
+<script src="/Scripts/DataTables-1.8.1/media/js/jquery.dataTables.js" type="text/javascript"></script>
+<script src="/Scripts/DataTables-1.8.1/extras/TableTools/media/js/TableTools.js" type="text/javascript"></script>
+<script src="/Scripts/DataTables-1.8.1/extras/TableTools/media/js/ZeroClipboard.js" type="text/javascript"></script>
+
+
+<script src="/Scripts/bootstrap.min.js"></script>
 @*These are for styling Control*@
 <link href="../../Content/DataTables-1.8.1/extras/TableTools/media/css/TableTools.css" rel="stylesheet" type="text/css" />
 <link href="../../Content/DataTables-1.8.1/extras/TableTools/media/css/TableTools_JUI.css" rel="stylesheet" type="text/css" />
@@ -18,8 +21,7 @@
 
 <script type="text/javascript">
 
-    function DeleteRow()
-    {
+    function DeleteRow() {
 
         // Here I have used DataTables.TableTools plugin for getting selected row items
         var oTT = TableTools.fnGetInstance('tbl'); // Get Table instance
@@ -45,8 +47,8 @@
     function Add() {
         // Adding item to table
         $('.tbl').dataTable().fnAddData([$('#SetNumber').val(), $('#ExerciseId').val(), $('#Reps').val(),
-                                $('#RPE').val(), $('#Load').val(), $('#Commentary').val(), $('#PersonalRecord').val()]);
-
+        $('#RPE').val(), $('#Load').val(), $('#Commentary').val(), $('#PersonalRecord').val()]);
+        debugger;
         // Making Editable text empty
         $('#SetNumber').val("")
         $('#ExerciseId').val("")
@@ -61,11 +63,13 @@
         // Step 1: Read View Data and Create JSON Object
 
         // Creating SessionSet Json Object
-        var sets = {"SetNumber": "", "ExerciseId": "", "Reps": "", "RPE": "", "Load": " ", "Commentary": " ", "PersonalRecord": " " };
-
+        var sets = { "SetNumber": "", "ExerciseId": "", "Reps": "", "RPE": "", "Load": " ", "Commentary": " ", "PersonalRecord": " " };
+        debugger;
         // Creating SalesMain Json Object
-        var sessionBPS = {"SessionDate": "", "Commentary": "", "SleepQuality": "", "TrustInSelf": "",
-                                            "Stress": "", "Fatigue": "", "Stiffness":"", "Motivation":"", "Sets": []};
+        var sessionBPS = {
+            "SessionDate": "", "Commentary": "", "SleepQuality": "", "TrustInSelf": "",
+            "Stress": "", "Fatigue": "", "Stiffness": "", "Motivation": "", "Sets": []
+        };
 
         // Set Sales Main Value
         sessionBPS.SessionDate = $("#SessionDate").val();
@@ -129,11 +133,24 @@
 
 </script>
 
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    table {
+        width: 100%;
+    }
 
+    th {
+        height: 50px;
+    }
+</style>
 
-
-<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
 
 @using (Html.BeginForm())
 {
@@ -141,120 +158,155 @@
 
     <div class="form-horizontal">
         <h4>Session</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.session.SessionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.session.SessionDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.session.SessionDate, "", new { @class = "text-danger" })
+        <fieldset>
+            <legend>Session</legend>
+            <div class="form-group">
+                @Html.LabelFor(model => model.session.SessionDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.session.SessionDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.session.SessionDate, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.session.Commentary, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.session.Commentary, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.session.Commentary, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.session.Commentary, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.session.Commentary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.session.Commentary, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bps.SleepQuality, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.bps.SleepQuality, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bps.SleepQuality, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.bps.SleepQuality, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bps.SleepQuality, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bps.SleepQuality, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bps.TrustInSelf, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.bps.TrustInSelf, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bps.TrustInSelf, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.bps.TrustInSelf, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bps.TrustInSelf, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bps.TrustInSelf, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bps.Stress, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.bps.Stress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bps.Stress, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.bps.Stress, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bps.Stress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bps.Stress, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bps.Fatigue, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.bps.Fatigue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bps.Fatigue, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.bps.Fatigue, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bps.Fatigue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bps.Fatigue, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bps.Stiffness, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.bps.Stiffness, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bps.Stiffness, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.bps.Stiffness, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bps.Stiffness, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bps.Stiffness, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.bps.Motivation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.bps.Motivation, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bps.Motivation, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.bps.Motivation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bps.Motivation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bps.Motivation, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </fieldset>
 
-        <table id="tbl">
-            <thead>
-                <tr>
-                    <th>SetNumber</th>
-                    <th>ExerciseID</th>
-                    <th>Reps</th>
-                    <th>RPE</th>
-                    <th>Load</th>
-                    <th>Commentary</th>
-                    <th>PersonalRecord</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null)
-                {
-                    foreach (var item in Model.session.Sets)
-                    {
+        <br />
+
+        <fieldset>
+            <legend>Sets</legend>
+
+            <label>Set Number :</label>
+            @Html.TextBox("SetNumber")
+            <label>Exercise :</label>
+            @Html.TextBox("ExerciseID")
+            <label>Reps :</label>
+            @Html.TextBox("Reps")
+            <label>RPE :</label>
+            @Html.TextBox("RPE")
+            <label>Load :</label>
+            @Html.TextBox("Load")
+            <label>Commentary :</label>
+            @Html.TextBox("Commentary")
+            <label>Personal Record :</label>
+            @Html.TextBox("PersonalRecord")
+            <input type="button" value="Add" onclick="Add()" />
+            <br />
+            <br />
+
+            <div style="overflow-x:auto;">
+                <table class="tbl" id="tbl" cellspacing=10 cellpadding=10>
+                    <thead>
                         <tr>
-                            <td>
-                                @Html.DisplayTextFor(i => item.SetNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayTextFor(i => item.ExerciseID)
-                            </td>
-                            <td>
-                                @Html.DisplayTextFor(i => item.Reps)
-                            </td>
-                            <td>
-                                @Html.DisplayTextFor(i => item.RPE)
-                            </td>
-                            <td>
-                                @Html.DisplayTextFor(i => item.Load)
-                            </td>
-                            <td>
-                                @Html.DisplayTextFor(i => item.Commentary)
-                            </td>
-                            <td>
-                                @Html.DisplayTextFor(i => item.PersonalRecord)
-                            </td>
+                            <th border-spacing: 5px>Set Number </th>
+                            <th border-spacing: 5px>Exercise </th>
+                            <th border-spacing: 5px>Reps </th>
+                            <th border-spacing: 5px>RPE </th>
+                            <th border-spacing: 5px>Load </th>
+                            <th border-spacing: 5px>Commentary </th>
+                            <th border-spacing: 5px>Personal Record </th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            if (Model.session.Sets != null)
+                            {
+                                foreach (var item in Model.session.Sets)
+                                {
+                                    <tr>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.SetNumber)
+                                        </td>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.ExerciseID)
+                                        </td>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.Reps)
+                                        </td>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.RPE)
+                                        </td>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.Load)
+                                        </td>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.Commentary)
+                                        </td>
+                                        <td border-spacing: 5px>
+                                            @Html.DisplayTextFor(i => item.PersonalRecord)
+                                        </td>
+                                    </tr>
 
-                    }
-                }
-            </tbody>
-        </table>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
 
+            <input type="button" value="Delete Selected Row" onclick="DeleteRow()" />
+        </fieldset>
+
+        <input type="button" value="Sales Save" onclick="Save()" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

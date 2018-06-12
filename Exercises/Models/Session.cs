@@ -23,7 +23,7 @@ namespace Exercises.Models
 
         public virtual BiopsychosocialState BiopsychosocialState { get; set; }
 
-        public List<SessionSet> Sets { get; set; }
+        public ICollection<SessionSet> Sets { get; set; }
     }
 
     public class SessionDBContext : DbContext
